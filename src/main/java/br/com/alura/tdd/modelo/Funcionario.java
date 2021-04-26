@@ -1,6 +1,7 @@
 package br.com.alura.tdd.modelo;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class Funcionario {
@@ -25,6 +26,21 @@ public class Funcionario {
 
 	public BigDecimal getSalario() {
 		return salario;
+	}
+
+	/*
+	 * Realiza o reajuste salarial com base no valor
+	 * identificado.
+	 */
+	public void reajusteSalarial(BigDecimal valorReajuste) {
+
+		this.salario = this.salario.add(valorReajuste);
+		arredondaSalario();
+	}
+
+	private void arredondaSalario() {
+
+		this.salario = this.salario.setScale(2, RoundingMode.HALF_UP);
 	}
 
 }
